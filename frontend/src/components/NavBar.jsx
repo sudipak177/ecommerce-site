@@ -72,7 +72,7 @@ function NavBar() {
         onClick={toggleNavbar}
       > 
 
-        <ul className="flex flex-col items-center gap-5 left-0 h-full bg-amber-50 text-sm w-50 pt-6 shadow-lg text-gray-700 ">
+        <ul className=" vertical-nav flex flex-col items-center gap-5 left-0 h-full bg-amber-50 text-sm w-50 pt-6 shadow-lg text-gray-700 ">
         <NavLink to="/">
           <img src={assets.logo} className="w-36" alt="this is logo" />
         </NavLink>
