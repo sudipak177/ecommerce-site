@@ -10,6 +10,7 @@ import PlaceOrder from "./pages/PlaceOrder";
 import Product from "./pages/Product";
 import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/login" element={<Login />} />
         </Routes>
+        <Footer/>
       </div>
     </>
   );
