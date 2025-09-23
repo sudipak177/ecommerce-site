@@ -5,7 +5,7 @@ import { assets } from "../assets/assets";
 import Title from "../components/Title";
 
 function Collection() {
-  const { products } = useContext(ShopContext);
+  const { products, search, showSearch } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const toggleFilter = ()=>{
     setShowFilter(!showFilter);
@@ -43,6 +43,10 @@ function Collection() {
 
   const applyFilter = () => {
     let productsCopy = products.slice();
+    if(showSearch && search){
+      productsCopy = productsCopy.filter(item=>item.name.toLowerCase().includes(search.toLowerCase()))
+    }
+
     if(category.length>0){
       productsCopy = productsCopy.filter(item=>category.includes(item.category));
     }
@@ -55,7 +59,7 @@ function Collection() {
   }
   useEffect(()=>{
     applyFilter();
-  },[category, subcategory])
+  },[category, subcategory, search, showSearch])
 
   //logic for sort product
   const sortProduct = () =>{
@@ -77,6 +81,9 @@ function Collection() {
   useEffect(()=>{
     sortProduct()
   },[sortType])
+
+
+
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
 

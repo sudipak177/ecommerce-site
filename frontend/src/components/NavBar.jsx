@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { NavLink, Link } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { setShowSearch } = useContext(ShopContext);
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
@@ -37,9 +39,10 @@ function NavBar() {
         </ul>
         <div className="flex items-center gap-6">
           <img
+            onClick={() => setShowSearch(true)}
             src={assets.search_icon}
             alt="this is search icon"
-            className="w-5"
+            className="w-5 cursor-pointer"
           />
           <div className="group relative">
             <img
@@ -66,37 +69,33 @@ function NavBar() {
           </button>
         </div>
       </div>
-      {isOpen &&(
-      <div
-        className=" fixed sm:hidden flex inset-0 "
-        onClick={toggleNavbar}
-      > 
-
-        <ul className=" vertical-nav flex flex-col items-center gap-5 left-0 h-full bg-amber-50 text-sm w-50 pt-6 shadow-lg text-gray-700 ">
-        <NavLink to="/">
-          <img src={assets.logo} className="w-36" alt="this is logo" />
-        </NavLink>
-          <NavLink className="flex flex-col items-center gap-1" to="/">
-            <p>HOME</p>
-            <hr className=" w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
-          </NavLink>
-          <NavLink className="flex flex-col items-center gap-1" to="/about">
-            <p>ABOUT</p>
-            <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
-          </NavLink>
-          <NavLink
-            className="flex flex-col items-center gap-1"
-            to="/collection"
-          >
-            <p>COLLECTION</p>
-            <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
-          </NavLink>
-          <NavLink className="flex flex-col items-center gap-1" to="/contact">
-            <p>CONTACT</p>
-            <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
-          </NavLink>
-        </ul>
-      </div>
+      {isOpen && (
+        <div className=" fixed sm:hidden flex inset-0 " onClick={toggleNavbar}>
+          <ul className=" vertical-nav flex flex-col items-center gap-5 left-0 h-full bg-amber-50 text-sm w-50 pt-6 shadow-lg text-gray-700 ">
+            <NavLink to="/">
+              <img src={assets.logo} className="w-36" alt="this is logo" />
+            </NavLink>
+            <NavLink className="flex flex-col items-center gap-1" to="/">
+              <p>HOME</p>
+              <hr className=" w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+            </NavLink>
+            <NavLink className="flex flex-col items-center gap-1" to="/about">
+              <p>ABOUT</p>
+              <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+            </NavLink>
+            <NavLink
+              className="flex flex-col items-center gap-1"
+              to="/collection"
+            >
+              <p>COLLECTION</p>
+              <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+            </NavLink>
+            <NavLink className="flex flex-col items-center gap-1" to="/contact">
+              <p>CONTACT</p>
+              <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+            </NavLink>
+          </ul>
+        </div>
       )}
     </>
   );
