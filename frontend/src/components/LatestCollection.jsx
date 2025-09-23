@@ -9,7 +9,7 @@ function LatestCollection() {
   useEffect(() => {
     setlatestProducts(products.slice(0, 10));
   }, []);
-//   console.log(products);
+  //   console.log(products);
   return (
     <div className="my-10">
       <div className="text-center py-8 text-3xl">
@@ -21,11 +21,15 @@ function LatestCollection() {
       </div>
       {/* Rendering products */}
       <div className="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-5 gap-5 gap-y-6">
-        {
-            latestProducts.map((items, index)=>(
-                <ProductItem key={index} id={items._id} image={items.image} name={items.name} price={items.price}/>
-            ))
-        }
+        {latestProducts.map((items, index) => (
+          <ProductItem
+            key={index}
+            id={items._id}
+            image={items.image}
+            name={items.name}
+            price={items.price}
+          />
+        ))}
       </div>
     </div>
   );
